@@ -8,6 +8,7 @@ class DailyPlanner(wx.Frame):
         super().__init__(parent, title=title, size=wx.Size(800, 600))
 
         panel = wx.Panel(self)
+        sizer = wx.BoxSizer(wx.VERTICAL)
 
         # Словарь для перевода дней недели
         weekdays_ru = {
@@ -27,10 +28,12 @@ class DailyPlanner(wx.Frame):
         current_date = english_date.replace(day_name_english, weekdays_ru[day_name_english])
 
         date_label = wx.StaticText(panel, label=f'📍 {current_date}')
-
         font = wx.Font(14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD)
-
         date_label.SetFont(font)
+
+        sizer.Add(date_label, 0, wx.ALL, 10)
+
+        panel.SetSizer(sizer)
 
         self.Show()
 
